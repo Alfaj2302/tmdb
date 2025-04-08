@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <h1>
-        Our Translated Header:
+        Our Translated Header here:
         {t('headerTitle', { appName: 'App for Translations' })}
       </h1>
       <h3>Current Language: {currentLanguage}</h3>
