@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
       </div>
       <div className="login-content">
         <div className="login-box">
-          <h1 className="login-title">Welcome Back</h1>
+          <h1 className="login-title">Welcome Back to {import.meta.env.VITE_APP_TITLE}</h1>
           <p className="login-subtitle">Sign in to rate and review your favorite movies</p>
 
           <form onSubmit={handleSubmit} className="login-form">
