@@ -3,14 +3,17 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # or main
+      - master
 
 permissions:
-  contents: write  # ← THIS LINE IS IMPORTA
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
+      VITE_AUTHORIZATION_TOKEN: ${{ secrets.VITE_AUTHORIZATION_TOKEN }}
 
     steps:
       - name: Checkout

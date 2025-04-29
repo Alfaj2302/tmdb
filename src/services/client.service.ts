@@ -7,7 +7,7 @@ export const get = async (url: string) => {
 };
 
 export const loginAPi = async (url: string, headers = {}) => {
-  const apiUrl = import.meta.env.VITE_API_KEY + url;
+  const apiUrl = import.meta.env.VITE_BASE_URL + url;
   const res = await axios.get(apiUrl, {
     headers: {
       ...headers,
@@ -17,7 +17,7 @@ export const loginAPi = async (url: string, headers = {}) => {
 };
 
 export const moviesList = async (url: string, headers = {}) => {
-  const apiUrl = import.meta.env.VITE_API_KEY + url;
+  const apiUrl = import.meta.env.VITE_BASE_URL + url;
   const res = await axios.get(apiUrl, {
     headers: {
       ...headers,
@@ -27,7 +27,7 @@ export const moviesList = async (url: string, headers = {}) => {
 };
 
 export const configurations = async (url: string, headers = {}) => {
-  const apiUrl = (import.meta.env.VITE_API_KEY + url);
+  const apiUrl = (import.meta.env.VITE_BASE_URL + url);
   const res = await axios.get(apiUrl, {
     headers: {
       ...headers,
