@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './LoginPage.css';
+import { loginAPi } from '../services/client.service';
+import { useNavigate } from 'react-router';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -9,10 +11,23 @@ const LoginPage: React.FC = () => {
     console.log('LoginPage component mounted');
   }, []);
 
+  const token = localStorage.getItem('authorizationToken');
+  let navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle login logic here
     console.log('Login attempt with:', { email, password });
+
+    loginAPi('/authentication', {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    }).then((res) => {
+      console.log(res.data); // Handle response here
+      if (res.data.success === true) {
+           navigate('/movieslist');
+      }
+    });
   };
 
   return (
@@ -22,8 +37,12 @@ const LoginPage: React.FC = () => {
       </div>
       <div className="login-content">
         <div className="login-box">
-          <h1 className="login-title">Welcome Back to {import.meta.env.VITE_APP_TITLE}</h1>
-          <p className="login-subtitle">Sign in to rate and review your favorite movies</p>
+          <h1 className="login-title">
+            Welcome Back to {import.meta.env.VITE_APP_TITLE}
+          </h1>
+          <p className="login-subtitle">
+            Sign in to rate and review your favorite movies
+          </p>
 
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
@@ -59,8 +78,12 @@ const LoginPage: React.FC = () => {
           </div>
 
           <div className="login-footer">
-            <p>Don't have an account? <a href="/signup">Sign up</a></p>
-            <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
+            <p>
+              Don't have an account? <a href="/signup">Sign up</a>
+            </p>
+            <a href="/forgot-password" className="forgot-password">
+              Forgot Password?
+            </a>
           </div>
         </div>
       </div>
