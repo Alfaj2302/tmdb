@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/tmdb_dummy">
+    <Router basename="/tmdb">
       <div className="App">
         <Routes>
           <Route path="/" element={<LoginPage />} />
