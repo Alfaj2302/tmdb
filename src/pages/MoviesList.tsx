@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { moviesList } from '../services/client.service';
 import './MoviesList.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 interface Movie {
   id: number;
@@ -51,6 +53,7 @@ const MoviesList: React.FC = () => {
 
   return (
     <div className="movies-page">
+      <Navbar />
       <main>
         <div className="movies-grid">
           {loading ? (
@@ -79,7 +82,7 @@ const MoviesList: React.FC = () => {
         </div>
         <div className="pagination">{/* Pagination buttons */}</div>
       </main>
-      <footer>{/* Footer content */}</footer>
+      <Footer />
     </div>
   );
 };
