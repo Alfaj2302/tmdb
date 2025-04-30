@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './LoginPage.css';
 import { loginAPi } from '../services/client.service';
 import { useNavigate } from 'react-router';
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -29,6 +31,32 @@ const LoginPage: React.FC = () => {
       }
     });
   };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (response) => {
+      try {
+        const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${response.access_token}` },
+        });
+
+        console.log('Google user info:', userInfo.data);
+
+        // Here you would typically:
+        // 1. Send the user info to your backend
+        // 2. Create or update user in your database
+        // 3. Generate a session token
+        // 4. Store the token
+
+        // For now, we'll just navigate to the movies list
+        navigate('/movieslist');
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    },
+    onError: () => {
+      console.log('Login Failed');
+    }
+  });
 
   return (
     <div className="login-container">
@@ -69,7 +97,7 @@ const LoginPage: React.FC = () => {
           </form>
 
           <div className="login-options">
-            <button className="social-login google">
+            <button className="social-login google" onClick={() => googleLogin()}>
               <span>Continue with Google</span>
             </button>
             <button className="social-login facebook">
