@@ -14,6 +14,8 @@ jobs:
     env:
       VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
       VITE_AUTHORIZATION_TOKEN: ${{ secrets.VITE_AUTHORIZATION_TOKEN }}
+      VITE_GOOGLE_OAUTH_CLIENT_ID: ${{secrets.VITE_GOOGLE_OAUTH_CLIENT_ID}}
+      VITE_GOOGLE_CLIENT_SECRET: ${{secrets.VITE_GOOGLE_CLIENT_SECRET}}
 
     steps:
       - name: Checkout
