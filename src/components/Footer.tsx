@@ -6,7 +6,6 @@ const FooterContainer = styled('footer')(({ theme }) => ({
   backgroundColor: '#000',
   color: '#757575',
   padding: '2rem 4rem',
-  width: '100%',
   [theme.breakpoints.down('md')]: {
     padding: '2rem',
   }
